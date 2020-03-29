@@ -10,9 +10,9 @@ login.addEventListener('click', function () {
 		var errorMessage = error.message;
 		if (errorCode == 'auth/user-not-found') {
 			console.log('New User');
-			if (type.selectedIndex == 0 || type.selectedIndex == 3) {
+			if (type.selectedIndex == 0) {
 				alert('New user, please select Professor or Student');
-			} else {			
+			} else {
 				if (userName.value) {
 					firebase.auth().createUserWithEmailAndPassword(email.value, password.value).catch(function (error) {
 						var errorCode = error.code;
@@ -28,29 +28,34 @@ login.addEventListener('click', function () {
 			alert('Please check the email or password and try again!');
 		}
 	});
-});
-
-firebase.auth().onAuthStateChanged(function (user) {
-	if (user) {
-		if (!user.displayName) {
-			let db = firebase.firestore();
-			let cat = type.value;
-			let user = firebase.auth().currentUser;
-			db.collection(cat).add({
-				uid: user.uid
-			}).then(function () {
+	firebase.auth().onAuthStateChanged(function (user) {
+		if (user) {
+			if (!user.displayName) {
+				let db = firebase.firestore();
+				let cat = type.value;
+				let user = firebase.auth().currentUser;
+				db.collection(cat).add({
+					uid: user.uid
+				}).then(function () {
+					user.updateProfile({
+						displayName: userName.value
+					});
+				}).then(function () {
+					window.open('index.html', '_self');
+				}).catch(function (error) {
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					console.log(errorCode + ': ' + errorMessage);
+				});
+			} else if (userName.value) {
 				user.updateProfile({
 					displayName: userName.value
+				}).then(function () {
+					window.open('index.html', '_self');
 				});
-			}).then(function () {
+			} else {
 				window.open('index.html', '_self');
-			}).catch(function (error) {
-				var errorCode = error.code;
-				var errorMessage = error.message;
-				console.log(errorCode + ': ' + errorMessage);
-			});
-		} else {
-			window.open('index.html', '_self');
+			}
 		}
-	}
+	});
 });

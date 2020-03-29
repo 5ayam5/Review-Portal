@@ -1,0 +1,94 @@
+body {
+	background: #ECEFF1;
+	color: rgba(0, 0, 0, 0.87);
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#top, #courses {
+	background: white;
+	max-width: 300px;
+	margin: 10px auto 16px;
+	padding: 16px 24px;
+	border-radius: 3px;
+}
+
+#courses {
+	max-width: 1000px;
+	margin: 10px auto 16px;
+}
+
+h3 {
+	color: #888;
+	font-weight: normal;
+	font-size: 16px;
+	margin: 16px 0 12px;
+}
+
+h2, li {
+	color: #ffa100;
+	font-weight: bold;
+	font-size: 16px;
+	margin: 0 0 8px;
+	width: fit-content;
+}
+
+h1 {
+	font-size: 22px;
+	font-weight: 300;
+	color: rgba(0, 0, 0, 0.6);
+	margin: 0 0 16px;
+}
+
+p {
+	line-height: 140%;
+	margin: 16px 0 24px;
+	font-size: 14px;
+}
+
+input, select {
+	display: block;
+	text-align: center;
+	width: 90%;
+	margin: 16px 0 24px;
+	padding: 8px;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+select {
+	width: 100%;
+}
+
+a {
+	display: block;
+	text-align: center;
+	background: #039be5;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: white;
+	padding: 8px;
+	margin: 2px auto;
+	border-radius: 4px;
+}
+
+a:hover, li:hover {
+	cursor: pointer;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.24);
+}
+
+#top, #courses, input, a {
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+@media (max-width: 600px) {
+	body, #top, #courses {
+		margin-top: 0;
+		background: white;
+		box-shadow: none;
+	}
+	body {
+		border-top: 16px solid #ffa100;
+	}
+}
