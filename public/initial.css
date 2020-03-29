@@ -6,7 +6,7 @@ body {
 	padding: 0;
 }
 
-#top, #courses {
+#top, #courses, #profs {
 	background: white;
 	max-width: 300px;
 	margin: 10px auto 16px;
@@ -14,7 +14,7 @@ body {
 	border-radius: 3px;
 }
 
-#courses {
+#courses, #profs {
 	max-width: 1000px;
 	margin: 10px auto 16px;
 }
