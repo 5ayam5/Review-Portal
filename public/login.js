@@ -1,5 +1,5 @@
-const url = new URL(window.location.href);
-const ret = url.searchParams.get('return');
+const url = window.location.href;
+const ret = url.split('return=')[1];
 
 var type = document.getElementById('type');
 var email = document.getElementById('email');
@@ -38,24 +38,17 @@ login.addEventListener('click', function () {
 					let db = firebase.firestore();
 					let cat = type.value;
 					let user = firebase.auth().currentUser;
-					db.collection(cat).add({
+					db.collection(cat).doc(user.uid).set({
 						uid: user.uid
-					}).then(function () {
-						user.updateProfile({
-							displayName: userName.value
-						});
+					})
+					user.updateProfile({
+						displayName: userName.value
 					}).then(function () {
 						window.open(ret, '_self');
 					}).catch(function (error) {
 						var errorCode = error.code;
 						var errorMessage = error.message;
 						console.log(errorCode + ': ' + errorMessage);
-					});
-				} else if (userName.value) {
-					user.updateProfile({
-						displayName: userName.value
-					}).then(function () {
-						window.open(ret, '_self');
 					});
 				} else {
 					window.open(ret, '_self');

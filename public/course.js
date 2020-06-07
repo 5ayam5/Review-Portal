@@ -2,6 +2,7 @@ const url = new URL(window.location.href);
 const courseID = url.searchParams.get('course');
 const courseCode = url.searchParams.get('code');
 document.title = courseCode;
+document.getElementById('h1').innerHTML += courseCode;
 
 var login = document.getElementById('login');
 
@@ -27,7 +28,6 @@ logout.addEventListener('click', function () {
 
 var profs = document.getElementById('profs');
 var profList = document.getElementById('profList');
-document.getElementById('h1').innerHTML += courseCode;
 
 window.addEventListener('load', function () {
 	firebase.firestore().collection('courses').doc(courseID).collection('profs').get().then(function (querySnapshot) {
